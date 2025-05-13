@@ -85,10 +85,8 @@ public class PassengerController {
     public ResponseEntity<?> deletePassenger(@PathVariable String passengerId) {
         int isDeleted = passengerService.deletePassenger(passengerId);
 
-        if (isDeleted > 3) {
+        if (isDeleted > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("Deleted successfully"); // 200 OK
-        } else if (isDeleted == 0) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Passenger not found, " + passengerId); // 404 NOT_FOUND
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Passenger not found, " + passengerId);
         }

@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,27 +26,36 @@ public class Bus {
 
     @Column(name = "bus_name")
     @JsonProperty("bus_name")
+    @NotBlank
     private String busName;
-
-    @Column(name = "bus_operator")
-    @JsonProperty("bus_operator")
-    private String busOperator;
-
-    @Column(name = "isACBus")
-    @JsonProperty("isACBus")
-    private boolean isACBus;
-
-    @Column(name = "isSleeper")
-    @JsonProperty("isSleeper")
-    private boolean isSleeper;
-
-    @Column(name = "isLiveTrackable")
-    @JsonProperty("isLiveTrackable")
-    private boolean isLiveTrackable;
 
     @Column(name = "ratePerKm")
     @JsonProperty("ratePerKm")
     private double ratePerKm;
+
+    @Column(name = "isUpperDeck")
+    @JsonProperty("isUpperDeck")
+    private boolean isUpperDeck;
+
+    @Column(name = "lower_left")
+    @JsonProperty("lower_left")
+    private String lowerLeft;
+
+    @Column(name = "lower_right")
+    @JsonProperty("lower_right")
+    private String lowerRight;
+
+    @Column(name = "numOfSeaterSeats")
+    @JsonProperty("numOfSeaterSeats")
+    private int numOfSeaterSeats;
+
+    @Column(name = "numOfSleeperSeats")
+    @JsonProperty("numOfSleeperSeats")
+    private int numOfSleeperSeats;
+
+    @Column(name = "isACBus")
+    @JsonProperty("isACBus")
+    private boolean isACBus;
 
     @Column(name = "waterBottle")
     @JsonProperty("waterBottle")
@@ -58,8 +68,4 @@ public class Bus {
     @Column(name = "chargingPoint")
     @JsonProperty("chargingPoint")
     private boolean chargingPoint;
-
-    @Column(name = "toilet")
-    @JsonProperty("toilet")
-    private boolean toilet;
 }

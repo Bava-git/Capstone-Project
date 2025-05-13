@@ -30,11 +30,11 @@ public class RouteInfoService {
         RouteInfo existRouteInfo = routeInfoRepository.findByRouteInfoId(routeInfoId);
 
         if (existRouteInfo != null) {
-            existRouteInfo.setOrigin(updateRouteInfo.getOrigin());
-            existRouteInfo.setDistance(updateRouteInfo.getDistance());
-            existRouteInfo.setDistance(updateRouteInfo.getDistance());
-            existRouteInfo.setTravelTime(updateRouteInfo.getTravelTime());
-            routeInfoRepository.save(existRouteInfo);
+//            existRouteInfo.setOrigin(updateRouteInfo.getOrigin());
+//            existRouteInfo.setDistance(updateRouteInfo.getDistance());
+//            existRouteInfo.setDistance(updateRouteInfo.getDistance());
+//            existRouteInfo.setTravelTime(updateRouteInfo.getTravelTime());
+//            return routeInfoRepository.save(existRouteInfo);
         }
 
         return null;

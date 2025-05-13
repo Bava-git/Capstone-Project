@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -32,9 +34,9 @@ public class Passenger {
     @Size(min = 3, max = 30)
     private String passengerName;
 
-    @Column(name = "passenger_age")
-    @JsonProperty("passenger_age")
-    private int passengerAge;
+    @Column(name = "passenger_dob")
+    @JsonProperty("passenger_dob")
+    private LocalDate passengerDOB;
 
     @Column(name = "passenger_gender")
     @JsonProperty("passenger_gender")
@@ -51,8 +53,4 @@ public class Passenger {
     @NotBlank
     @Email
     private String passengerEmail;
-
-    @Column(name = "passenger_code")
-    @JsonProperty("passenger_code")
-    private int passengerSecretCode;
 }

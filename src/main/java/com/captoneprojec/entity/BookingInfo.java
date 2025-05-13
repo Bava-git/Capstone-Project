@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -27,25 +28,38 @@ public class BookingInfo {
     @JsonProperty("bookingInfo_id")
     private String bookingInfoId;
 
-    @Column(name = "booking_date")
-    @JsonProperty("booking_date")
-    private LocalDate bookingDate;
-
-    @Column(name = "start_time")
-    @JsonProperty("start_time")
-    private LocalTime startTime;
-
-    @Column(name = "end_time")
-    @JsonProperty("end_time")
-    private LocalTime endTime;
-
     @Column(name = "bus_id")
     @JsonProperty("bus_id")
     private String busId;
 
+    @Column(name = "bus_name")
+    @JsonProperty("bus_name")
+    @NotBlank
+    private String busName;
+
+    @Column(name = "availableSeaterSeats")
+    @JsonProperty("availableSeaterSeats")
+    private int availableSeaterSeats;
+
+    @Column(name = "availableSleeperSeats")
+    @JsonProperty("availableSleeperSeats")
+    private int availableSleeperSeats;
+
     @Column(name = "routeInfo_id")
     @JsonProperty("routeInfo_id")
     private String routeInfoId;
+
+    @Column(name = "boardingDateTime")
+    @JsonProperty("boardingDateTime")
+    private LocalDateTime boardingDateTime;
+
+    @Column(name = "droppingDateTime")
+    @JsonProperty("droppingDateTime")
+    private LocalDateTime droppingDateTime;
+
+    @Column(name = "travelTime")
+    @JsonProperty("travelTime")
+    private LocalTime travelTime;
 
     @Column(name = "origin")
     @JsonProperty("origin")

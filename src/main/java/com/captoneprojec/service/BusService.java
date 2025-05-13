@@ -29,17 +29,17 @@ public class BusService {
         Bus existBus = busRepository.findByBusId(busId);
 
         if (existBus != null) {
-            existBus.setBusName(updateBus.getBusName());
-            existBus.setBusOperator(updateBus.getBusOperator());
-            existBus.setACBus(updateBus.isACBus());
-            existBus.setSleeper(updateBus.isSleeper());
-            existBus.setLiveTrackable(updateBus.isLiveTrackable());
-            existBus.setRatePerKm(updateBus.getRatePerKm());
-            existBus.setWaterBottle(updateBus.isWaterBottle());
-            existBus.setBlanket(updateBus.isBlanket());
-            existBus.setChargingPoint(updateBus.isChargingPoint());
-            existBus.setToilet(updateBus.isToilet());
-            busRepository.save(updateBus);
+//            existBus.setBusName(updateBus.getBusName());
+//            existBus.setBusOperator(updateBus.getBusOperator());
+//            existBus.setACBus(updateBus.isACBus());
+//            existBus.setSleeper(updateBus.isSleeper());
+//            existBus.setLiveTrackable(updateBus.isLiveTrackable());
+//            existBus.setRatePerKm(updateBus.getRatePerKm());
+//            existBus.setWaterBottle(updateBus.isWaterBottle());
+//            existBus.setBlanket(updateBus.isBlanket());
+//            existBus.setChargingPoint(updateBus.isChargingPoint());
+//            existBus.setToilet(updateBus.isToilet());
+//            return busRepository.save(updateBus);
         }
 
         return null;

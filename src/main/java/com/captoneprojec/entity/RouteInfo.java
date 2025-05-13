@@ -26,20 +26,20 @@ public class RouteInfo {
     @JsonProperty("routeInfo_id")
     private String routeInfoId;
 
-    @Column(name = "origin")
-    @JsonProperty("origin")
+    @Column(name = "routeInfo_origin")
+    @JsonProperty("routeInfo_origin")
     private String origin;
 
-    @Column(name = "destination")
-    @JsonProperty("destination")
+    @Column(name = "routeInfo_destination")
+    @JsonProperty("routeInfo_destination")
     @NotBlank
     private String destination;
 
-    @Column(name = "distance")
-    @JsonProperty("distance")
+    @Column(name = "routeInfo_distance")
+    @JsonProperty("routeInfo_distance")
     private int distance;
 
-    @Column(name = "travel_time")
-    @JsonProperty("travel_time")
+    @Column(name = "routeInfo_traveltime")
+    @JsonProperty("routeInfo_traveltime")
     private LocalTime travelTime;
 }

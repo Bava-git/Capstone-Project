@@ -75,6 +75,7 @@ public class BookingInfoController {
     @PutMapping("/update/{bookingInfoId}")
     public ResponseEntity<?> updateBIR(@PathVariable String bookingInfoId, @RequestBody BookingInfo updateBookingInfo) {
         BookingInfo bookingInfo = bookingInfoSer.updateBIR(bookingInfoId, updateBookingInfo);
+        System.out.println(bookingInfo);
         if (bookingInfo != null) {
             return ResponseEntity.status(HttpStatus.OK).body("Updated successfully."); // 200 OK
         }

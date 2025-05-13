@@ -35,9 +35,9 @@ public class PassengerBookingInfoService {
                 findByPassengerBookingInfoId(passengerBookingInfoId);
 
         if (ifExist != null) {
-            ifExist.setPassengerId(UpdatepassengerBookingInfo.getPassengerId());
-            ifExist.setPassengerName(UpdatepassengerBookingInfo.getPassengerName());
-            passengerBookInfoRep.save(UpdatepassengerBookingInfo);
+//            ifExist.setPassengerId(UpdatepassengerBookingInfo.getPassengerId());
+//            ifExist.setPassengerName(UpdatepassengerBookingInfo.getPassengerName());
+//            return passengerBookInfoRep.save(UpdatepassengerBookingInfo);
         }
 
         return null;
