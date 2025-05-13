@@ -34,28 +34,6 @@ public class BookingInfoService {
         return bookingInfoRepository.save(bookingInfo);
     }
 
-    public BookingInfo updateBIR(String bookingInfoId,
-                                           BookingInfo updateBookingInfoId) {
-        BookingInfo ifExist = bookingInfoRepository.
-                findByBookingInfoId(bookingInfoId);
-        System.out.println(ifExist);
-
-        if (ifExist != null) {
-//            ifExist.setBookingDate(updateBookingInfoId.getBookingDate());
-//            ifExist.setOrigin(updateBookingInfoId.getOrigin());
-//            ifExist.setStartTime(updateBookingInfoId.getStartTime());
-//            ifExist.setEndTime(updateBookingInfoId.getEndTime());
-//            ifExist.setBusId(updateBookingInfoId.getBusId());
-//            ifExist.setRouteInfoId(updateBookingInfoId.getRouteInfoId());
-//            ifExist.setOrigin(updateBookingInfoId.getOrigin());
-//            ifExist.setDestination(updateBookingInfoId.getDestination());
-//            ifExist.setTotalDistance(updateBookingInfoId.getTotalDistance());
-//            return bookingInfoRepository.save(ifExist);
-        }
-
-        return null;
-    }
-
     public int deleteBIR(String bookingInfoId) {
         return bookingInfoRepository.deleteByBookingInfoId(bookingInfoId);
     }

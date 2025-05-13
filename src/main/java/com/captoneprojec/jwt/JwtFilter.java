@@ -1,4 +1,4 @@
-package com.captoneprojec.config;
+package com.captoneprojec.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

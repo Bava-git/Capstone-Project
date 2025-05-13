@@ -72,16 +72,6 @@ public class BookingInfoController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
-    @PutMapping("/update/{bookingInfoId}")
-    public ResponseEntity<?> updateBIR(@PathVariable String bookingInfoId, @RequestBody BookingInfo updateBookingInfo) {
-        BookingInfo bookingInfo = bookingInfoSer.updateBIR(bookingInfoId, updateBookingInfo);
-        System.out.println(bookingInfo);
-        if (bookingInfo != null) {
-            return ResponseEntity.status(HttpStatus.OK).body("Updated successfully."); // 200 OK
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("BookingInfo not found, " + bookingInfoId); // 404 NOT_FOUND
-    }
-
     @Transactional
     @DeleteMapping("/delete/{bookingInfoId}")
     public ResponseEntity<?> deleteBIR(@PathVariable String bookingInfoId) {

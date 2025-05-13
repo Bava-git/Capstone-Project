@@ -30,14 +30,23 @@ public class PassengerBookingInfoService {
     }
 
     public PassengerBookingInfo updatePBIR(String passengerBookingInfoId,
-                                                PassengerBookingInfo UpdatepassengerBookingInfo) {
+                                           PassengerBookingInfo UpdatepassengerBookingInfo) {
         PassengerBookingInfo ifExist = passengerBookInfoRep.
                 findByPassengerBookingInfoId(passengerBookingInfoId);
 
         if (ifExist != null) {
-//            ifExist.setPassengerId(UpdatepassengerBookingInfo.getPassengerId());
-//            ifExist.setPassengerName(UpdatepassengerBookingInfo.getPassengerName());
-//            return passengerBookInfoRep.save(UpdatepassengerBookingInfo);
+            ifExist.setPassengerBookingInfoId(UpdatepassengerBookingInfo.getPassengerBookingInfoId());
+            ifExist.setBookingInfoId(UpdatepassengerBookingInfo.getBookingInfoId());
+            ifExist.setPassengerEmail(UpdatepassengerBookingInfo.getPassengerEmail());
+            ifExist.setPassengerName(UpdatepassengerBookingInfo.getPassengerName());
+            ifExist.setPassengerMobile(UpdatepassengerBookingInfo.getPassengerMobile());
+            ifExist.setSeatNum(UpdatepassengerBookingInfo.getSeatNum());
+            ifExist.setPassengerId(UpdatepassengerBookingInfo.getPassengerId());
+            ifExist.setPaymentType(UpdatepassengerBookingInfo.getPaymentType());
+            ifExist.setPassengerGender(UpdatepassengerBookingInfo.getPassengerGender());
+            ifExist.setBookingDateTime(UpdatepassengerBookingInfo.getBookingDateTime());
+            ifExist.setPnrNumber(UpdatepassengerBookingInfo.getPnrNumber());
+            return passengerBookInfoRep.save(UpdatepassengerBookingInfo);
         }
 
         return null;

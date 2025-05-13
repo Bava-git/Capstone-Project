@@ -1,4 +1,4 @@
-package com.captoneprojec.config;
+package com.captoneprojec.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

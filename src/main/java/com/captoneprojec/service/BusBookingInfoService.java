@@ -34,17 +34,12 @@ public class BusBookingInfoService {
         BusBookingInfo existBus = bookingInfoRepository.findByBusBookingInfoId(busId);
 
         if (existBus != null) {
-//            existBus.setBusName(updateBus.getBusName());
-//            existBus.setBusOperator(updateBus.getBusOperator());
-//            existBus.setACBus(updateBus.isACBus());
-//            existBus.setSleeper(updateBus.isSleeper());
-//            existBus.setLiveTrackable(updateBus.isLiveTrackable());
-//            existBus.setRatePerKm(updateBus.getRatePerKm());
-//            existBus.setWaterBottle(updateBus.isWaterBottle());
-//            existBus.setBlanket(updateBus.isBlanket());
-//            existBus.setChargingPoint(updateBus.isChargingPoint());
-//            existBus.setToilet(updateBus.isToilet());
-//            return bookingInfoRepository.save(updateBus);
+            existBus.setBusBookingInfoId((updatebusBookingInfo.getBusBookingInfoId()));
+            existBus.setBusId(updatebusBookingInfo.getBusId());
+            existBus.setBookingDate(updatebusBookingInfo.getBookingDate());
+            existBus.setPassengerGender(updatebusBookingInfo.getPassengerGender());
+            existBus.setBookedSeatNum(updatebusBookingInfo.getBookedSeatNum());
+            return bookingInfoRepository.save(updatebusBookingInfo);
         }
 
         return null;

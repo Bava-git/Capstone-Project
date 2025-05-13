@@ -17,12 +17,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "passengercredential")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long passengerCredentialId;
+    private long Id;
 
     @Column(name = "passenger_id")
     @JsonProperty("passenger_id")
@@ -31,13 +30,13 @@ public class User {
     @Column(name = "username")
     @JsonProperty("username")
     @NotBlank
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 255)
     private String username;
 
     @Column(name = "password")
     @JsonProperty("password")
     @NotBlank
-    @Size(min = 4, max = 30)
+    @Size(min = 4, max = 255)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

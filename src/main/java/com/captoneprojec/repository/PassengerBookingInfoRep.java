@@ -12,6 +12,5 @@ public interface PassengerBookingInfoRep extends JpaRepository<PassengerBookingI
 
     int deleteByPassengerBookingInfoId(String passengerBookingInfoId);
 
-    int deleteByPassengerId(String passengerId);
-
+    int deleteAllByPassengerId(String passengerId);
 }

@@ -1,5 +1,7 @@
 package com.captoneprojec.config;
 
+import com.captoneprojec.jwt.CustomUserDetailsService;
+import com.captoneprojec.jwt.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,14 +30,14 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/passenger/**",
-                                "/bookinginfo/**",
-                                "/bus/**",
-                                "/passengerbookingInfo/**",
-                                "/passengercredential/**",
-                                "/routeinfo/**"
-                        ).permitAll()
+                        .requestMatchers("/user/register", "/user/login", "/passenger/add", "/routes", "/passenger/id/**", "/busbookinginfo", "/bus", "/bookinginfo").permitAll()
+                        .requestMatchers("/passengerbookingInfo", "/busbookinginfo/add", "/passengerbookingInfo/add").hasAnyAuthority("ROLE_PASSENGER", "ROLE_ADMIN")
+                        .requestMatchers("/bookinginfo/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/busbookinginfo/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/bus/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/passengerbookingInfo/x**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/routes/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/passenger/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

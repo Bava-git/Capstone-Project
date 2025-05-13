@@ -59,10 +59,6 @@ public class PassengerBookingInfo {
     @JsonProperty("seat_num")
     private String seatNum;
 
-    @Column(name = "seat_price")
-    @JsonProperty("seat_price")
-    private double seatPrice;
-
     @Column(name = "paymentType")
     @JsonProperty("paymentType")
     private String paymentType;

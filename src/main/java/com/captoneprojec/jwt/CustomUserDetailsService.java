@@ -1,4 +1,4 @@
-package com.captoneprojec.config;
+package com.captoneprojec.jwt;
 
 import com.captoneprojec.entity.User;
 import com.captoneprojec.repository.UserRepository;

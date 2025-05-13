@@ -1,7 +1,7 @@
 package com.captoneprojec.controller;
 
-import com.captoneprojec.config.CustomUserDetailsService;
-import com.captoneprojec.config.JwtUtil;
+import com.captoneprojec.jwt.CustomUserDetailsService;
+import com.captoneprojec.jwt.JwtUtil;
 import com.captoneprojec.entity.Role;
 import com.captoneprojec.entity.User;
 import com.captoneprojec.repository.RoleRepository;
@@ -87,5 +87,29 @@ public class UserController {
         }
     }
 
+    @PostMapping("/changepassword")
+    public ResponseEntity<?> changePassword(@RequestBody Map<String, String> req) {
+        try {
+            // Get the logged-in user
+            User user = userRepository.findByUsername(req.get("username"))
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+
+            // Check if the old password matches
+            if (!passwordEncoder.matches(req.get("oldPassword"), user.getPassword())) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Incorrect old password");
+            }
+
+            // Encrypt the new password
+            String hashedNewPassword = passwordEncoder.encode(req.get("newPassword"));
+
+            // Update the password
+            user.setPassword(hashedNewPassword);
+            userRepository.save(user);
+
+            return ResponseEntity.status(HttpStatus.OK).body("Password updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error changing password");
+        }
+    }
 
 }
