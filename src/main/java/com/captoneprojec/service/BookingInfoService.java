@@ -1,7 +1,6 @@
 package com.captoneprojec.service;
 
 import com.captoneprojec.entity.BookingInfo;
-import com.captoneprojec.entity.BookingInfo;
 import com.captoneprojec.repository.BookingInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -73,4 +73,5 @@ public class BookingInfo {
     @Column(name = "total_distance")
     @JsonProperty("total_distance")
     private int totalDistance;
+
 }
