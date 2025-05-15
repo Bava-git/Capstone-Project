@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/register", "/user/login", "/passenger/add", "/routes", "/passenger/id/**", "/busbookinginfo", "/bus", "/bookinginfo").permitAll()
-                        .requestMatchers("/passengerbookingInfo", "/busbookinginfo/add", "/passengerbookingInfo/add").hasAnyAuthority("ROLE_PASSENGER", "ROLE_ADMIN")
+                        .requestMatchers("/passengerbookingInfo", "/busbookinginfo/add", "/passengerbookingInfo/add","/passenger/update/**").hasAnyAuthority("ROLE_PASSENGER", "ROLE_ADMIN")
                         .requestMatchers("/bookinginfo/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/busbookinginfo/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/bus/**").hasAuthority("ROLE_ADMIN")

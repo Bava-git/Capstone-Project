@@ -1,19 +1,14 @@
 package com.captoneprojec.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "busbookinginfodb")
-public class BusBookingInfo {
+public class BusSeatBooking {
 
     @Id
     @Column(name = "busBookingInfo_id")
@@ -44,4 +39,5 @@ public class BusBookingInfo {
     @JsonProperty("passenger_gender")
     @NotBlank
     private String passengerGender;
+
 }

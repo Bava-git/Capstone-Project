@@ -1,8 +1,8 @@
 package com.captoneprojec.serviceTest;
 
-import com.captoneprojec.entity.BookingInfo;
-import com.captoneprojec.repository.BookingInfoRepository;
-import com.captoneprojec.service.BookingInfoService;
+import com.captoneprojec.entity.BusSchedule;
+import com.captoneprojec.repository.BusScheduleRepository;
+import com.captoneprojec.service.BusScheduleService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,21 +25,21 @@ import static org.mockito.Mockito.times;
 public class BookingInfoTest {
 
     @Mock
-    private BookingInfoRepository bookingInfoRepository;
+    private BusScheduleRepository bookingInfoRepository;
     @InjectMocks
-    private BookingInfoService bookingInfoService;
+    private BusScheduleService bookingInfoService;
 
-    private BookingInfo bookingInfo1;
-    private BookingInfo bookingInfo2;
+    private BusSchedule bookingInfo1;
+    private BusSchedule bookingInfo2;
 
     @BeforeEach
     void setup() {
-        bookingInfo1 = new BookingInfo(
+        bookingInfo1 = new BusSchedule(
                 "BI1", "B1", "KKR Travels", 20, 10, "RI1",
                 LocalDateTime.of(2025, 5, 10, 17, 0),
                 LocalDateTime.of(2025, 5, 10, 17, 0), LocalTime.of(10, 0), "Tirunelveli", "Chennai", 625
         );
-        bookingInfo2 = new BookingInfo(
+        bookingInfo2 = new BusSchedule(
                 "BI2", "B1", "OMG Travels", 20, 10, "RI2",
                 LocalDateTime.of(2025, 5, 10, 17, 0),
                 LocalDateTime.of(2025, 5, 10, 17, 0), LocalTime.of(10, 0), "Tirunelveli", "Chennai", 625)
@@ -49,7 +49,7 @@ public class BookingInfoTest {
     @Test
     void listPBIR() {
         when(bookingInfoRepository.findAll()).thenReturn(Arrays.asList(bookingInfo1, bookingInfo2));
-        List<BookingInfo> patientList = bookingInfoService.listPBIR();
+        List<BusSchedule> patientList = bookingInfoService.listPBIR();
 
         // validate
         assertEquals(2, patientList.size());
@@ -58,8 +58,8 @@ public class BookingInfoTest {
 
     @Test
     void createBIR() {
-        when(bookingInfoRepository.save(any(BookingInfo.class))).thenReturn(bookingInfo1);
-        BookingInfo bookingInfo = bookingInfoService.createBIR(bookingInfo1);
+        when(bookingInfoRepository.save(any(BusSchedule.class))).thenReturn(bookingInfo1);
+        BusSchedule bookingInfo = bookingInfoService.createBIR(bookingInfo1);
 
         // validate
         assertNotNull(bookingInfo);
@@ -70,7 +70,7 @@ public class BookingInfoTest {
     @Test
     void getBookingInfoId() {
         when(bookingInfoRepository.findByBookingInfoId(bookingInfo2.getBookingInfoId())).thenReturn(bookingInfo2);
-        BookingInfo bookingInfo = bookingInfoService.findByBookingInfoId(bookingInfo2.getBookingInfoId());
+        BusSchedule bookingInfo = bookingInfoService.findByBookingInfoId(bookingInfo2.getBookingInfoId());
 
         assertEquals("OMG Travels", bookingInfo.getBusName());
         verify(bookingInfoRepository, times(1)).findByBookingInfoId(bookingInfo2.getBookingInfoId());

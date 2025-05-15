@@ -59,9 +59,12 @@ public class PassengerController {
 
         Passenger isExist =
                 passengerService.findByPassengerId(passenger.getPassengerId());
+        isExist =
+                passengerService.findByPassengerEmail(passenger.getPassengerEmail());
+        isExist =
+                passengerService.findByPassengerMobile(passenger.getPassengerMobile());
         if (isExist != null) {
-            return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " +
-                    passenger.getPassengerId());
+            return ResponseEntity.status(HttpStatus.FOUND).body("Passenger ID/Email/Mobile already exist");
         }
 
         Passenger pass = passengerService.createPassenger(passenger);
@@ -84,8 +87,9 @@ public class PassengerController {
     @DeleteMapping("/delete/{passengerId}")
     public ResponseEntity<?> deletePassenger(@PathVariable String passengerId) {
         int isDeleted = passengerService.deletePassenger(passengerId);
-
-        if (isDeleted > 0) {
+        if (isDeleted == 3) {
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted from all tables"); // 200 OK
+        } else if (isDeleted > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("Deleted successfully"); // 200 OK
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Passenger not found, " + passengerId);

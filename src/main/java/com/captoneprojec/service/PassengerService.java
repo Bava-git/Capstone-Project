@@ -56,7 +56,6 @@ public class PassengerService {
 
     public int deletePassenger(String passengerId) {
         int i = 0;
-
         i = i + userRepository.deleteByPassengerId(passengerId);
         i = i + passengerBookingInfoRep.deleteAllByPassengerId(passengerId);
         i = i + passengerRepository.deleteByPassengerId(passengerId);

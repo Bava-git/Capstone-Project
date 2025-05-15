@@ -1,9 +1,6 @@
 package com.captoneprojec.controller;
 
-import com.captoneprojec.entity.BookingInfo;
 import com.captoneprojec.entity.Bus;
-import com.captoneprojec.entity.Bus;
-import com.captoneprojec.service.BusService;
 import com.captoneprojec.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -64,7 +61,10 @@ public class BusController {
     @DeleteMapping("/delete/{busId}")
     public ResponseEntity<?> deleteBus(@PathVariable String busId) {
         int isDeleted = busService.deleteBus(busId);
-        if (isDeleted > 0) {
+
+        if (isDeleted == 3) {
+            return ResponseEntity.status(HttpStatus.OK).body("Deleted from all tables"); // 200 OK
+        } else if (isDeleted > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("Deleted successfully"); // 200 OK
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Bus not found, " + busId); // 404 NOT_FOUND

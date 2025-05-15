@@ -1,35 +1,35 @@
 package com.captoneprojec.service;
 
-import com.captoneprojec.entity.BookingInfo;
-import com.captoneprojec.repository.BookingInfoRepository;
+import com.captoneprojec.entity.BusSchedule;
+import com.captoneprojec.repository.BusScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BookingInfoService {
+public class BusScheduleService {
 
     @Autowired
-    private BookingInfoRepository bookingInfoRepository;
+    private BusScheduleRepository bookingInfoRepository;
 
-    public List<BookingInfo> listPBIR() {
+    public List<BusSchedule> listPBIR() {
         return bookingInfoRepository.findAll();
     }
 
-    public BookingInfo findByBookingInfoId(String bookingInfoId) {
+    public BusSchedule findByBookingInfoId(String bookingInfoId) {
         return bookingInfoRepository.findByBookingInfoId(bookingInfoId);
     }
 
-    public List<BookingInfo> findByBusId(String busId) {
+    public List<BusSchedule> findByBusId(String busId) {
         return bookingInfoRepository.findByBusId(busId);
     }
 
-    public List<BookingInfo> findByRouteInfoId(String routeInfoId) {
+    public List<BusSchedule> findByRouteInfoId(String routeInfoId) {
         return bookingInfoRepository.findByRouteInfoId(routeInfoId);
     }
 
-    public BookingInfo createBIR(BookingInfo bookingInfo) {
+    public BusSchedule createBIR(BusSchedule bookingInfo) {
         return bookingInfoRepository.save(bookingInfo);
     }
 
@@ -37,4 +37,7 @@ public class BookingInfoService {
         return bookingInfoRepository.deleteByBookingInfoId(bookingInfoId);
     }
 
+    public int deleteAllByBusId(String busId) {
+        return bookingInfoRepository.deleteAllByBusId(busId);
+    }
 }

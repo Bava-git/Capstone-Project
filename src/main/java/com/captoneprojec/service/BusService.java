@@ -1,6 +1,7 @@
 package com.captoneprojec.service;
 
 import com.captoneprojec.entity.Bus;
+import com.captoneprojec.repository.BusSeatBookingRepository;
 import com.captoneprojec.repository.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,10 @@ public class BusService {
 
     @Autowired
     private BusRepository busRepository;
+    @Autowired
+    private BusSeatBookingRepository busBookingInfoRepository;
+    @Autowired
+    private BusScheduleService bookingInfoService;
 
     public List<Bus> listBus() {
         return busRepository.findAll();
@@ -47,7 +52,11 @@ public class BusService {
     }
 
     public int deleteBus(String busId) {
-        return busRepository.deleteByBusId(busId);
+        int i = 0;
+        i = i + bookingInfoService.deleteAllByBusId(busId);
+        i = i + busBookingInfoRepository.deleteAllByBusId(busId);
+        i = i + busRepository.deleteByBusId(busId);
+        return i;
     }
 
 }

@@ -1,33 +1,32 @@
 package com.captoneprojec.controller;
 
-import com.captoneprojec.entity.BookingInfo;
-import com.captoneprojec.service.BookingInfoService;
+import com.captoneprojec.entity.BusSchedule;
+import com.captoneprojec.service.BusScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/bookinginfo")
 @CrossOrigin("http://localhost:3000")
-public class BookingInfoController {
+public class BusScheduleController {
 
     @Autowired
-    private BookingInfoService bookingInfoSer;
+    private BusScheduleService bookingInfoSer;
 
     @GetMapping
-    public List<BookingInfo> listPBIR() {
+    public List<BusSchedule> listPBIR() {
         return bookingInfoSer.listPBIR();
     }
 
     @GetMapping("/id/{bookingInfoId}")
     public ResponseEntity<?> findByBookingInfoId(@PathVariable String bookingInfoId) {
-        BookingInfo bookingInfo = bookingInfoSer.findByBookingInfoId(bookingInfoId);
+        BusSchedule bookingInfo = bookingInfoSer.findByBookingInfoId(bookingInfoId);
         if (bookingInfo != null) {
             return ResponseEntity.ok(bookingInfo); // 200 OK
         } else {
@@ -37,7 +36,7 @@ public class BookingInfoController {
 
     @GetMapping("/bus/{busId}")
     public ResponseEntity<?> findByBusId(@PathVariable String busId) {
-        List<BookingInfo> bookingInfoList = bookingInfoSer.findByBusId(busId);
+        List<BusSchedule> bookingInfoList = bookingInfoSer.findByBusId(busId);
         if (bookingInfoList != null && !bookingInfoList.isEmpty()) {
             return ResponseEntity.ok(bookingInfoList); // 200 OK
         } else {
@@ -48,7 +47,7 @@ public class BookingInfoController {
 
     @GetMapping("/route/{routeInfoId}")
     public ResponseEntity<?> findByRouteInfoId(@PathVariable String routeInfoId) {
-        List<BookingInfo> bookingInfoList = bookingInfoSer.findByRouteInfoId(routeInfoId);
+        List<BusSchedule> bookingInfoList = bookingInfoSer.findByRouteInfoId(routeInfoId);
         if (bookingInfoList != null && !bookingInfoList.isEmpty()) {
             return ResponseEntity.ok(bookingInfoList); // 200 OK
         } else {
@@ -58,14 +57,14 @@ public class BookingInfoController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createBIR(@RequestBody BookingInfo bookingInfo) {
+    public ResponseEntity<?> createBIR(@RequestBody BusSchedule bookingInfo) {
 
-        BookingInfo isExist = bookingInfoSer.findByBookingInfoId(bookingInfo.getBookingInfoId());
+        BusSchedule isExist = bookingInfoSer.findByBookingInfoId(bookingInfo.getBookingInfoId());
         if (isExist != null) {
             return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + bookingInfo.getBookingInfoId());
         }
 
-        BookingInfo bir = bookingInfoSer.createBIR(bookingInfo);
+        BusSchedule bir = bookingInfoSer.createBIR(bookingInfo);
         if (bir != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(bir);
         }

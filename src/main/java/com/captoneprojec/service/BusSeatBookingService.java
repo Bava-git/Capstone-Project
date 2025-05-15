@@ -1,37 +1,36 @@
 package com.captoneprojec.service;
 
-import com.captoneprojec.entity.BusBookingInfo;
-import com.captoneprojec.repository.BusBookingInfoRepository;
-import com.captoneprojec.repository.BusRepository;
+import com.captoneprojec.entity.BusSeatBooking;
+import com.captoneprojec.repository.BusSeatBookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BusBookingInfoService {
+public class BusSeatBookingService {
 
     @Autowired
-    private BusBookingInfoRepository bookingInfoRepository;
+    private BusSeatBookingRepository bookingInfoRepository;
 
-    public List<BusBookingInfo> listBBIR() {
+    public List<BusSeatBooking> listBBIR() {
         return bookingInfoRepository.findAll();
     }
 
-    public BusBookingInfo findByBusBookingInfoId(String busId) {
+    public BusSeatBooking findByBusBookingInfoId(String busId) {
         return bookingInfoRepository.findByBusBookingInfoId(busId);
     }
 
-    public List<BusBookingInfo> findByBusId(String busId) {
+    public List<BusSeatBooking> findByBusId(String busId) {
         return bookingInfoRepository.findByBusId(busId);
     }
 
-    public BusBookingInfo createBBIR(BusBookingInfo busBookingInfo) {
+    public BusSeatBooking createBBIR(BusSeatBooking busBookingInfo) {
         return bookingInfoRepository.save(busBookingInfo);
     }
 
-    public BusBookingInfo updateBBIR(String busId, BusBookingInfo updatebusBookingInfo) {
-        BusBookingInfo existBus = bookingInfoRepository.findByBusBookingInfoId(busId);
+    public BusSeatBooking updateBBIR(String busId, BusSeatBooking updatebusBookingInfo) {
+        BusSeatBooking existBus = bookingInfoRepository.findByBusBookingInfoId(busId);
 
         if (existBus != null) {
             existBus.setBusBookingInfoId((updatebusBookingInfo.getBusBookingInfoId()));
