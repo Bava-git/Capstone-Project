@@ -1,7 +1,8 @@
 package com.captoneprojec.controller;
 
-import com.captoneprojec.entity.BusSeatBooking;
-import com.captoneprojec.service.BusSeatBookingService;
+import com.captoneprojec.entity.BlockedSeats;
+import com.captoneprojec.entity.PassengerBookingInfo;
+import com.captoneprojec.service.BlockedSeatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +15,19 @@ import java.util.Map;
 @RestController
 @RequestMapping("/busbookinginfo")
 @CrossOrigin("http://localhost:3000")
-public class BusSeatBookingController {
+public class BlockedSeatsController {
 
     @Autowired
-    private BusSeatBookingService busBookingInfoSer;
+    private BlockedSeatsService blockedSeatsService;
 
     @GetMapping
-    public List<BusSeatBooking> listBBIR() {
-        return busBookingInfoSer.listBBIR();
+    public List<BlockedSeats> listBBIR() {
+        return blockedSeatsService.listBBIR();
     }
 
     @GetMapping("/id/{bookingInfoId}")
     public ResponseEntity<?> findByBusBookingInfoId(@PathVariable String busBookingInfoId) {
-        BusSeatBooking busBookingInfo = busBookingInfoSer.findByBusBookingInfoId(busBookingInfoId);
+        BlockedSeats busBookingInfo = blockedSeatsService.findByBusBookingInfoId(busBookingInfoId);
         if (busBookingInfo != null) {
             return ResponseEntity.ok(busBookingInfo); // 200 OK
         } else {
@@ -36,7 +37,7 @@ public class BusSeatBookingController {
 
     @GetMapping("/bus/{busId}")
     public ResponseEntity<?> findByBusId(@PathVariable String busId) {
-        List<BusSeatBooking> busBookingInfo = busBookingInfoSer.findByBusId(busId);
+        List<BlockedSeats> busBookingInfo = blockedSeatsService.findByBusId(busId);
         if (busBookingInfo != null && !busBookingInfo.isEmpty()) {
             return ResponseEntity.ok(busBookingInfo); // 200 OK
         } else {
@@ -46,23 +47,42 @@ public class BusSeatBookingController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createBIR(@RequestBody BusSeatBooking busBookingInfo) {
+    public ResponseEntity<?> createBIR(@RequestBody BlockedSeats busBookingInfo) {
 
-        BusSeatBooking isExist = busBookingInfoSer.findByBusBookingInfoId(busBookingInfo.getBusBookingInfoId());
+        BlockedSeats isExist = blockedSeatsService.findByBusBookingInfoId(busBookingInfo.getBusBookingInfoId());
         if (isExist != null) {
             return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " + busBookingInfo.getBusBookingInfoId());
         }
 
-        BusSeatBooking bir = busBookingInfoSer.createBBIR(busBookingInfo);
+        BlockedSeats bir = blockedSeatsService.createBBIR(busBookingInfo);
         if (bir != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(bir);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
 
+    @PostMapping("/add/all")
+    public ResponseEntity<?> multipleBSRcreate(@RequestBody List<BlockedSeats> blockedSeats) {
+
+        for (BlockedSeats element : blockedSeats) {
+            BlockedSeats isExist =
+                    blockedSeatsService.findByBusBookingInfoId(element.getBusBookingInfoId());
+            if (isExist != null) {
+                return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " +
+                        element.getBusBookingInfoId());
+            }
+        }
+
+        List<BlockedSeats> pass = blockedSeatsService.multipleBSRcreate(blockedSeats);
+        if (pass != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(pass);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
     @PutMapping("/update/{bookingInfoId}")
-    public ResponseEntity<?> updateBIR(@PathVariable String bookingInfoId, @RequestBody BusSeatBooking updateBookingInfo) {
-        BusSeatBooking bookingInfo = busBookingInfoSer.updateBBIR(bookingInfoId, updateBookingInfo);
+    public ResponseEntity<?> updateBIR(@PathVariable String bookingInfoId, @RequestBody BlockedSeats updateBookingInfo) {
+        BlockedSeats bookingInfo = blockedSeatsService.updateBBIR(bookingInfoId, updateBookingInfo);
         System.out.println(bookingInfo);
         if (bookingInfo != null) {
             return ResponseEntity.status(HttpStatus.OK).body("Updated successfully."); // 200 OK
@@ -73,7 +93,7 @@ public class BusSeatBookingController {
     @Transactional
     @DeleteMapping("/delete/{busBookingInfo}")
     public ResponseEntity<?> deleteByBusBookingInfoId(@PathVariable String busBookingInfo) {
-        int isDeleted = busBookingInfoSer.deleteByBusBookingInfoId(busBookingInfo);
+        int isDeleted = blockedSeatsService.deleteByBusBookingInfoId(busBookingInfo);
         if (isDeleted > 0) {
             return ResponseEntity.status(HttpStatus.OK).body("Deleted successfully"); // 200 OK
         } else {

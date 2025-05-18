@@ -1,17 +1,17 @@
 package com.captoneprojec.repository;
 
-import com.captoneprojec.entity.BusSeatBooking;
+import com.captoneprojec.entity.BlockedSeats;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface BusSeatBookingRepository extends JpaRepository<BusSeatBooking, Long> {
+public interface BlockedSeatsRepository extends JpaRepository<BlockedSeats, Long> {
 
-    BusSeatBooking findByBusBookingInfoId(String busId);
+    BlockedSeats findByBusBookingInfoId(String busId);
 
-    List<BusSeatBooking> findByBusId(String busId);
+    List<BlockedSeats> findByBusId(String busId);
 
     int deleteAllByBusId(String busId);
 

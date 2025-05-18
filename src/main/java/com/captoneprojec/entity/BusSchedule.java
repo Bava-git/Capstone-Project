@@ -19,7 +19,7 @@ import java.time.LocalTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "bookinginfodb")
+@Table(name = "busschedule")
 public class BusSchedule {
 
     @Id

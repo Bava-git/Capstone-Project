@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "busbookinginfodb")
-public class BusSeatBooking {
+@Table(name = "blockedseats")
+public class BlockedSeats {
 
     @Id
     @Column(name = "busBookingInfo_id")

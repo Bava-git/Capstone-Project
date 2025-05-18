@@ -1,6 +1,7 @@
 package com.captoneprojec.controller;
 
 import com.captoneprojec.entity.Bus;
+import com.captoneprojec.entity.PassengerBookingInfo;
 import com.captoneprojec.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

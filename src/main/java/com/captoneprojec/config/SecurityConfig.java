@@ -30,8 +30,12 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/register", "/user/login", "/passenger/add", "/routes", "/passenger/id/**", "/busbookinginfo", "/bus", "/bookinginfo").permitAll()
-                        .requestMatchers("/passengerbookingInfo", "/busbookinginfo/add", "/passengerbookingInfo/add","/passenger/update/**").hasAnyAuthority("ROLE_PASSENGER", "ROLE_ADMIN")
+                        .requestMatchers(
+                                "/user/register", "/user/login", "/passenger/add",
+                                "/routes", "/passenger/id/**", "/busbookinginfo", "/bus", "/bookinginfo").permitAll()
+                        .requestMatchers("/passengerbookingInfo",
+                                "/busbookinginfo/add", "/passengerbookingInfo/add",
+                                "/busbookinginfo/add/all", "/passengerbookingInfo/add/all","/passenger/update/**").hasAnyAuthority("ROLE_PASSENGER", "ROLE_ADMIN")
                         .requestMatchers("/bookinginfo/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/busbookinginfo/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/bus/**").hasAuthority("ROLE_ADMIN")

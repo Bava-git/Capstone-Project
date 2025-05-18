@@ -1,7 +1,7 @@
 package com.captoneprojec.service;
 
 import com.captoneprojec.entity.Bus;
-import com.captoneprojec.repository.BusSeatBookingRepository;
+import com.captoneprojec.repository.BlockedSeatsRepository;
 import com.captoneprojec.repository.BusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class BusService {
     @Autowired
     private BusRepository busRepository;
     @Autowired
-    private BusSeatBookingRepository busBookingInfoRepository;
+    private BlockedSeatsRepository busBookingInfoRepository;
     @Autowired
     private BusScheduleService bookingInfoService;
 

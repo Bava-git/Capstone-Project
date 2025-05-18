@@ -13,11 +13,15 @@ public class PassengerBookingInfoService {
     @Autowired
     private PassengerBookingInfoRep passengerBookInfoRep;
 
+    public List<PassengerBookingInfo> multiplePBIRcreate(List<PassengerBookingInfo> passengerBookingInfo) {
+        return passengerBookInfoRep.saveAll(passengerBookingInfo);
+    }
+
     public List<PassengerBookingInfo> listPBIR() {
         return passengerBookInfoRep.findAll();
     }
 
-    public PassengerBookingInfo findByPassengerId(String passengerId) {
+    public List<PassengerBookingInfo> findByPassengerId(String passengerId) {
         return passengerBookInfoRep.findByPassengerId(passengerId);
     }
 

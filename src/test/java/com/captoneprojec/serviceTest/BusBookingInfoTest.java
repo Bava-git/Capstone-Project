@@ -1,8 +1,8 @@
 package com.captoneprojec.serviceTest;
 
-import com.captoneprojec.entity.BusSeatBooking;
-import com.captoneprojec.repository.BusSeatBookingRepository;
-import com.captoneprojec.service.BusSeatBookingService;
+import com.captoneprojec.entity.BlockedSeats;
+import com.captoneprojec.repository.BlockedSeatsRepository;
+import com.captoneprojec.service.BlockedSeatsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,24 +23,24 @@ import static org.mockito.Mockito.*;
 public class BusBookingInfoTest {
 
     @Mock
-    private BusSeatBookingRepository busBookingInfoRepository;
+    private BlockedSeatsRepository busBookingInfoRepository;
 
     @InjectMocks
-    private BusSeatBookingService busBookingInfoService;
+    private BlockedSeatsService busBookingInfoService;
 
-    private BusSeatBooking bookingInfo1;
-    private BusSeatBooking bookingInfo2;
+    private BlockedSeats bookingInfo1;
+    private BlockedSeats bookingInfo2;
 
     @BeforeEach
     void setup() {
-        bookingInfo1 = new BusSeatBooking("BBI1", "B1", "A12", LocalDate.of(2025, 5, 10), "Male");
-        bookingInfo2 = new BusSeatBooking("BBI2", "B2", "B14", LocalDate.of(2025, 5, 12), "Female");
+        bookingInfo1 = new BlockedSeats("BBI1", "B1", "A12", LocalDate.of(2025, 5, 10), "Male");
+        bookingInfo2 = new BlockedSeats("BBI2", "B2", "B14", LocalDate.of(2025, 5, 12), "Female");
     }
 
     @Test
     void listAllBookings() {
         when(busBookingInfoRepository.findAll()).thenReturn(Arrays.asList(bookingInfo1, bookingInfo2));
-        List<BusSeatBooking> bookingList = busBookingInfoService.listBBIR();
+        List<BlockedSeats> bookingList = busBookingInfoService.listBBIR();
 
         assertEquals(2, bookingList.size());
         verify(busBookingInfoRepository, times(1)).findAll();
@@ -48,8 +48,8 @@ public class BusBookingInfoTest {
 
     @Test
     void createBooking() {
-        when(busBookingInfoRepository.save(any(BusSeatBooking.class))).thenReturn(bookingInfo1);
-        BusSeatBooking savedBooking = busBookingInfoService.createBBIR(bookingInfo1);
+        when(busBookingInfoRepository.save(any(BlockedSeats.class))).thenReturn(bookingInfo1);
+        BlockedSeats savedBooking = busBookingInfoService.createBBIR(bookingInfo1);
 
         assertNotNull(savedBooking);
         assertEquals("B1", savedBooking.getBusId());
@@ -59,7 +59,7 @@ public class BusBookingInfoTest {
     @Test
     void getBookingById() {
         when(busBookingInfoRepository.findByBusBookingInfoId(bookingInfo2.getBusBookingInfoId())).thenReturn(bookingInfo2);
-        BusSeatBooking retrievedBooking = busBookingInfoService.findByBusBookingInfoId(bookingInfo2.getBusBookingInfoId());
+        BlockedSeats retrievedBooking = busBookingInfoService.findByBusBookingInfoId(bookingInfo2.getBusBookingInfoId());
 
         assertEquals("B2", retrievedBooking.getBusId());
         verify(busBookingInfoRepository, times(1)).findByBusBookingInfoId(bookingInfo2.getBusBookingInfoId());
@@ -81,10 +81,10 @@ public class BusBookingInfoTest {
         bookingInfo1.setBookedSeatNum("A15");
         bookingInfo1.setPassengerGender("Female");
 
-        when(busBookingInfoRepository.save(any(BusSeatBooking.class)))
+        when(busBookingInfoRepository.save(any(BlockedSeats.class)))
                 .thenReturn(bookingInfo1);
 
-        BusSeatBooking updatedBooking = busBookingInfoService.updateBBIR(bookingInfo1.getBusBookingInfoId(), bookingInfo1);
+        BlockedSeats updatedBooking = busBookingInfoService.updateBBIR(bookingInfo1.getBusBookingInfoId(), bookingInfo1);
 
         // Validate the updated values
         assertNotNull(updatedBooking);

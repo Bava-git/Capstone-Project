@@ -37,9 +37,9 @@ public class PassengerBookingInfoController {
         }
     }
 
-    @GetMapping("/subid/{passengerId}")
+    @GetMapping("/pid/{passengerId}")
     public ResponseEntity<?> findByPassengerId(@PathVariable String passengerId) {
-        PassengerBookingInfo passengerBookingInfo = passengerBookInfoSer.findByPassengerId(passengerId);
+        List<PassengerBookingInfo> passengerBookingInfo = passengerBookInfoSer.findByPassengerId(passengerId);
         if (passengerBookingInfo != null) {
             return ResponseEntity.ok(passengerBookingInfo); // 200 OK
         } else {
@@ -58,6 +58,25 @@ public class PassengerBookingInfoController {
         }
 
         PassengerBookingInfo pass = passengerBookInfoSer.createPBIR(passengerBookingInfo);
+        if (pass != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(pass);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
+    @PostMapping("/add/all")
+    public ResponseEntity<?> multiplePBIRcreate(@RequestBody List<PassengerBookingInfo> passengerBookingInfo) {
+
+        for (PassengerBookingInfo element : passengerBookingInfo) {
+            PassengerBookingInfo isExist =
+                    passengerBookInfoSer.findByPassengerBookingInfoId(element.getPassengerBookingInfoId());
+            if (isExist != null) {
+                return ResponseEntity.status(HttpStatus.FOUND).body("ID already exist " +
+                        element.getPassengerBookingInfoId());
+            }
+        }
+
+        List<PassengerBookingInfo> pass = passengerBookInfoSer.multiplePBIRcreate(passengerBookingInfo);
         if (pass != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(pass);
         }
